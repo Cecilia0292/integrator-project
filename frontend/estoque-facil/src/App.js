@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import AuthPage from './pages/auth/AuthPage';
+import MainLayout from './pages/layout/MainLayout';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('temporaryLoggedIn') === 'true');
+
+  if (!loggedIn) {
+    return <AuthPage onLogin={() => setLoggedIn(true)} />;
+  }
+
+  return <MainLayout onLogout={() => setLoggedIn(false)} />;
 }
 
 export default App;

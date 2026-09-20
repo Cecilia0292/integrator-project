@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #172033;
+  font-family: Arial, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+main {
+  width: min(1100px, calc(100% - 32px));
+  margin: 40px auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+h1 {
+  margin-bottom: 28px;
+  color: #173b7a;
+  font-size: 36px;
+}
+
+h2 {
+  margin-top: 40px;
+  color: #263859;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #dce3ef;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(27, 55, 98, 0.08);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #172033;
+  font-size: 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #79a7f5;
+  border-color: #2764c7;
+}
+
+button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: #1769d1;
   color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+form button {
+  grid-column: 1 / -1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button:hover {
+  background: #0f4fa3;
+}
+
+ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  background: white;
+  border: 1px solid #dce3ef;
+  border-radius: 9px;
+}
+
+li button {
+  background: #d9363e;
+}
+
+li button:hover {
+  background: #a9232b;
+}
+
+p[style*='red'] {
+  padding: 12px;
+  border-radius: 7px;
+  background: #ffe4e6;
+}
+
+p[style*='green'] {
+  padding: 12px;
+  border-radius: 7px;
+  background: #dcfce7;
+}
+
+@media (max-width: 700px) {
+  main {
+    width: min(100% - 20px, 560px);
+    margin: 24px auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  form {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  li button {
+    width: 100%;
   }
 }
