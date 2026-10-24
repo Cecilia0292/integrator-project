@@ -42,9 +42,13 @@ function ProductsPage() {
 
   function handleChange(event) {
     const { name, value } = event.target;
+
     setForm((currentForm) => ({
       ...currentForm,
       [name]: name === "stockQuantity" ? Number(value) : value,
+      ...(name === "category" && value !== "OUTROS"
+        ? { categoryOther: "" }
+        : {}),
     }));
   }
 
@@ -87,6 +91,13 @@ function ProductsPage() {
     setError("");
   }
 
+  function handleCancelEdit() {
+    setEditingId(null);
+    setForm(initialForm);
+    setMessage("");
+    setError("");
+  }
+
   async function handleDelete(id) {
     const confirmed = window.confirm(
       "Tem certeza que deseja excluir este produto?",
@@ -110,8 +121,17 @@ function ProductsPage() {
   return (
     <main className="container py-4">
       <h1 className="text-primary mb-4">Produtos</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {message && <p style={{ color: "green" }}>{message}</p>}
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+
+      {message && (
+        <div className="alert alert-success" role="alert">
+          {message}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="card border-0 shadow-sm p-4">
         <div className="row g-3">
@@ -142,7 +162,7 @@ function ProductsPage() {
               className="form-control"
               type="text"
               inputMode="numeric"
-              placeholder="7891234567890"
+              placeholder="Digite 13 números"
               value={form.barcode}
               onChange={handleChange}
               maxLength={13}
@@ -245,6 +265,18 @@ function ProductsPage() {
               {editingId ? "Atualizar produto" : "Cadastrar produto"}
             </button>
           </div>
+
+          {editingId && (
+            <div className="col-12 col-md-6 mx-auto">
+              <button
+                type="button"
+                className="btn btn-secondary w-100"
+                onClick={handleCancelEdit}
+              >
+                Cancelar edição
+              </button>
+            </div>
+          )}
         </div>
       </form>
       <section className="mt-5">
