@@ -40,16 +40,17 @@ function ProductList({ products, onEdit, onDelete }) {
                 title="Editar produto"
               >
                 <i className="bi bi-pencil-square me-1" aria-hidden="true"></i>
-                Editar
+                Editar produto
               </button>
 
               <button
                 type="button"
                 className="btn btn-danger btn-sm"
                 onClick={() => onDelete(product.id)}
+                title="Excluir produto"
               >
                 <i className="bi bi-trash me-1" aria-hidden="true"></i>
-                Excluir
+                Excluir produto
               </button>
             </li>
           ))}
