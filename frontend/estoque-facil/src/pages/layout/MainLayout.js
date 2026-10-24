@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom";
-import AppRoutes from "../../routes/AppRoutes";
+import { NavLink, Outlet } from "react-router-dom";
 
 function MainLayout({ onLogout }) {
   function handleLogout() {
@@ -47,7 +46,7 @@ function MainLayout({ onLogout }) {
       </nav>
 
       <div className="container py-4">
-        <AppRoutes />
+        <Outlet />
       </div>
     </div>
   );
