@@ -1,26 +1,14 @@
-import { useState } from "react";
-import ProductsPage from "../products/ProductsPage";
-import SuppliersPage from "../suppliers/SuppliersPage";
-import AssociationsPage from "../associations/AssociationsPage";
+import { NavLink } from "react-router-dom";
+import AppRoutes from "../../routes/AppRoutes";
 
 function MainLayout({ onLogout }) {
-  const [activePage, setActivePage] = useState("products");
-
-  function renderPage() {
-    if (activePage === "suppliers") {
-      return <SuppliersPage />;
-    }
-
-    if (activePage === "associations") {
-      return <AssociationsPage />;
-    }
-
-    return <ProductsPage />;
-  }
-
   function handleLogout() {
     localStorage.removeItem("temporaryLoggedIn");
     onLogout();
+  }
+
+  function getNavLinkClass({ isActive }) {
+    return `btn ${isActive ? "btn-light text-primary" : "btn-outline-light"}`;
   }
 
   return (
@@ -31,59 +19,36 @@ function MainLayout({ onLogout }) {
             <i className="bi bi-boxes fs-3" aria-hidden="true"></i>
             <span>Estoque Fácil</span>
           </span>
+
           <div className="d-flex flex-wrap gap-2">
-            <button
-              type="button"
-              className={`btn ${
-                activePage === "products"
-                  ? "btn-light text-primary"
-                  : "btn-outline-light"
-              }`}
-              onClick={() => setActivePage("products")}
-            >
-              <i className="bi bi-box-seam me-1"></i>
+            <NavLink to="/products" className={getNavLinkClass}>
+              <i className="bi bi-box-seam me-1" aria-hidden="true"></i>
               Produtos
-            </button>
-
-            <button
-              type="button"
-              className={`btn ${
-                activePage === "suppliers"
-                  ? "btn-light text-primary"
-                  : "btn-outline-light"
-              }`}
-              onClick={() => setActivePage("suppliers")}
-            >
-              <i className="bi bi-truck me-1"></i>
+            </NavLink>
+            <NavLink to="/suppliers" className={getNavLinkClass}>
+              <i className="bi bi-truck me-1" aria-hidden="true"></i>
               Fornecedores
-            </button>
-
-            <button
-              type="button"
-              className={`btn ${
-                activePage === "associations"
-                  ? "btn-light text-primary"
-                  : "btn-outline-light"
-              }`}
-              onClick={() => setActivePage("associations")}
-            >
-              <i className="bi bi-link-45deg me-1"></i>
+            </NavLink>
+            <NavLink to="/associations" className={getNavLinkClass}>
+              <i className="bi bi-link-45deg me-1" aria-hidden="true"></i>
               Associações
-            </button>
+            </NavLink>
 
             <button
               type="button"
               className="btn btn-danger"
               onClick={handleLogout}
             >
-              <i className="bi bi-box-arrow-right me-1"></i>
+              <i className="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
               Sair
             </button>
           </div>
         </div>
       </nav>
 
-      <div className="container py-4">{renderPage()}</div>
+      <div className="container py-4">
+        <AppRoutes />
+      </div>
     </div>
   );
 }
