@@ -13,6 +13,7 @@ function SupplierForm({ form, editingId, onChange, onSubmit, onCancel }) {
             placeholder="Nome do fornecedor"
             value={form.name}
             onChange={onChange}
+            maxLength={100}
             required
           />
         </div>
@@ -28,8 +29,9 @@ function SupplierForm({ form, editingId, onChange, onSubmit, onCancel }) {
             placeholder="00.000.000/0000-00"
             value={form.cnpj}
             onChange={onChange}
+            maxLength={18}
             pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}/[0-9]{4}-[0-9]{2}"
-            title="Use o formato 00.000.000/0000-00"
+            title="Informe o CNPJ no formato 00.000.000/0000-00"
             required
           />
         </div>
@@ -45,6 +47,7 @@ function SupplierForm({ form, editingId, onChange, onSubmit, onCancel }) {
             placeholder="Endereço completo"
             value={form.address}
             onChange={onChange}
+            maxLength={200}
             required
           />
         </div>
@@ -61,8 +64,9 @@ function SupplierForm({ form, editingId, onChange, onSubmit, onCancel }) {
             placeholder="(00) 00000-0000"
             value={form.phone}
             onChange={onChange}
+            maxLength={15}
             pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}"
-            title="Use o formato (00) 00000-0000"
+            title="Informe o telefone no formato (00) 00000-0000"
             required
           />
         </div>
@@ -79,6 +83,8 @@ function SupplierForm({ form, editingId, onChange, onSubmit, onCancel }) {
             placeholder="contato@empresa.com"
             value={form.email}
             onChange={onChange}
+            maxLength={254}
+            title="Informe um e-mail válido, como contato@empresa.com"
             required
           />
         </div>
@@ -94,6 +100,7 @@ function SupplierForm({ form, editingId, onChange, onSubmit, onCancel }) {
             placeholder="Nome do contato principal"
             value={form.mainContact}
             onChange={onChange}
+            maxLength={100}
             required
           />
         </div>
